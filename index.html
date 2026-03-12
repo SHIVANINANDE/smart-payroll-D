@@ -33,6 +33,9 @@
     padding: 16px 48px;
     display: flex; align-items: center; justify-content: space-between;
     border-bottom: 3px solid var(--red);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
   }
   .header-left {
     display: flex;
@@ -446,19 +449,19 @@
 <div class="section section-alt" id="faqs">
   <div class="section-title">Frequently Asked Questions</div>
   <div class="faq-list">
-    <div class="faq-item" onclick="this.classList.toggle('active')">
+    <div class="faq-item">
       <div class="faq-question">What is Smart Payroll and who is it for? <span class="faq-icon">+</span></div>
       <div class="faq-answer">Smart Payroll is a comprehensive, cloud-based payroll solution designed to help Indian startups, SMEs, and consultants automate their payroll processes. It requires zero IT support.</div>
     </div>
-    <div class="faq-item" onclick="this.classList.toggle('active')">
+    <div class="faq-item">
       <div class="faq-question">Are there any hidden fees or setup charges? <span class="faq-icon">+</span></div>
       <div class="faq-answer">No, there are absolutely no setup fees, and we don't believe in long-term lock-ins. You only pay for what you use.</div>
     </div>
-    <div class="faq-item" onclick="this.classList.toggle('active')">
+    <div class="faq-item">
       <div class="faq-question">Does it support statutory compliance like PF, ESI, and TDS? <span class="faq-icon">+</span></div>
       <div class="faq-answer">Yes, we support full Indian statutory compliance including PF, ESI, PT, TDS, Bonus, and Gratuity out of the box.</div>
     </div>
-    <div class="faq-item" onclick="this.classList.toggle('active')">
+    <div class="faq-item">
       <div class="faq-question">How secure is my payroll data? <span class="faq-icon">+</span></div>
       <div class="faq-answer">Your data is hosted on secure cloud infrastructure. Moreover, Smart Payroll is backed by an ISO 27001 & CMMI Level 5 certified organization.</div>
     </div>
@@ -575,12 +578,31 @@
       const targetId = this.getAttribute('href');
       const target = document.querySelector(targetId);
       if (target) {
+        const headerRect = document.querySelector('header').getBoundingClientRect();
         window.scrollTo({
-          top: target.offsetTop,
+          top: target.offsetTop - headerRect.height,
           behavior: 'smooth'
         });
       }
     });
+  });
+
+  // FAQ Accordion Logic
+  const faqItems = document.querySelectorAll('.faq-item');
+  faqItems.forEach(item => {
+    item.addEventListener('click', (e) => {
+      e.stopPropagation();
+      const isActive = item.classList.contains('active');
+      faqItems.forEach(i => i.classList.remove('active'));
+      if (!isActive) {
+        item.classList.add('active');
+      }
+    });
+  });
+
+  // Close FAQs when clicking outside (e.g., clicking other buttons)
+  document.addEventListener('click', () => {
+    faqItems.forEach(i => i.classList.remove('active'));
   });
 
   // Modal logic
