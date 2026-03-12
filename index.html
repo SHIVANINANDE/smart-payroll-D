@@ -1,0 +1,607 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Smart Payroll — Single Pager</title>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;700;800&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --navy: #0A1628;
+    --red: #CC0000;
+    --red-light: #FF6B6B;
+    --white: #FFFFFF;
+    --off-white: #F8F9FC;
+    --gray: #6B7A99;
+    --light-border: #E2E8F0;
+    --text: #1a2744;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: #fff;
+    color: var(--text);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 14px;
+    line-height: 1.6;
+  }
+
+  /* ─── HEADER ─── */
+  header {
+    background: var(--navy);
+    padding: 16px 48px;
+    display: flex; align-items: center; justify-content: space-between;
+    border-bottom: 3px solid var(--red);
+  }
+  .header-left {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+  }
+  .header-tagline {
+    font-size: 0.7rem; letter-spacing: 3px; text-transform: uppercase;
+    color: rgba(255,255,255,0.45); font-weight: 500;
+  }
+  
+  /* ─── NAVIGATION ─── */
+  .nav-links {
+    display: flex;
+    gap: 24px;
+    align-items: center;
+  }
+  .nav-links a {
+    color: #fff;
+    text-decoration: none;
+    font-size: 0.9rem;
+    font-weight: 500;
+    transition: color 0.3s;
+  }
+  .nav-links a:hover {
+    color: var(--red-light);
+  }
+  .btn-login {
+    background: transparent;
+    border: 1px solid var(--red-light);
+    color: var(--red-light) !important;
+    padding: 8px 16px;
+    border-radius: 4px;
+    font-weight: 600;
+    transition: all 0.3s;
+  }
+  .btn-login:hover {
+    background: var(--red-light);
+    color: #fff !important;
+  }
+
+  /* ─── HERO ─── */
+  .hero {
+    background: linear-gradient(135deg, #0d1f3c 0%, #1a2f52 60%, #0A1628 100%);
+    padding: 52px 48px;
+    display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: center;
+  }
+  .hero-left h1 {
+    font-family: 'Syne', sans-serif; font-weight: 800;
+    font-size: 2.1rem; line-height: 1.15; letter-spacing: -1px;
+    color: #fff; margin-bottom: 16px;
+  }
+  .hero-left h1 span { color: var(--red-light); }
+  .hero-left p {
+    color: rgba(255,255,255,0.7); font-size: 0.92rem; line-height: 1.7;
+    margin-bottom: 28px; font-weight: 300;
+  }
+  .btn-cta {
+    display: inline-block;
+    background: linear-gradient(135deg, var(--red), #e63333);
+    color: #fff; font-weight: 600; font-size: 0.88rem;
+    padding: 13px 32px; border-radius: 6px; text-decoration: none;
+    box-shadow: 0 6px 20px rgba(204,0,0,0.4); letter-spacing: 0.3px;
+  }
+  .no-lock { color: rgba(255,255,255,0.4); font-size: 0.72rem; margin-top: 10px; }
+
+  .hero-right {
+    background: rgba(255,255,255,0.06);
+    border: 1px solid rgba(255,255,255,0.12);
+    border-radius: 12px; padding: 24px;
+    display: grid; grid-template-columns: 1fr 1fr; gap: 4px;
+  }
+  .stat-box { text-align: center; padding: 18px 8px; }
+  .stat-num {
+    font-family: 'Syne', sans-serif; font-weight: 800; font-size: 1.7rem;
+    color: var(--red-light); letter-spacing: -1px;
+  }
+  .stat-label { font-size: 0.72rem; color: rgba(255,255,255,0.5); margin-top: 4px; line-height: 1.4; }
+  .stat-divider-h { grid-column: 1/-1; height: 1px; background: rgba(255,255,255,0.08); margin: 4px 0; }
+
+  /* ─── SECTIONS ─── */
+  .section { padding: 44px 48px; }
+  .section-alt { background: var(--off-white); }
+  .section-title {
+    font-family: 'Syne', sans-serif; font-weight: 800;
+    font-size: 1.3rem; letter-spacing: -0.5px; color: var(--navy);
+    margin-bottom: 28px; padding-bottom: 10px;
+    border-bottom: 3px solid var(--red);
+    display: inline-block;
+  }
+
+  /* ─── WHY ─── */
+  .why-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+  .why-card {
+    background: #fff; border: 1px solid var(--light-border);
+    border-radius: 10px; padding: 24px 20px;
+    border-top: 4px solid var(--red);
+  }
+  .why-badge {
+    display: inline-block; width: 28px; height: 28px; border-radius: 50%;
+    background: var(--navy); color: #fff;
+    font-family: 'Syne', sans-serif; font-weight: 800; font-size: 0.8rem;
+    text-align: center; line-height: 28px; margin-bottom: 12px;
+  }
+  .why-card h3 { font-family: 'Syne', sans-serif; font-weight: 700; font-size: 0.92rem; color: var(--red); margin-bottom: 8px; }
+  .why-card p { font-size: 0.82rem; color: var(--gray); line-height: 1.6; }
+
+  /* ─── WHAT YOU GET ─── */
+  .what-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 32px; }
+  .features-list { list-style: none; }
+  .features-list li {
+    padding: 12px 0; border-bottom: 1px solid var(--light-border);
+    display: flex; gap: 14px; align-items: flex-start;
+  }
+  .features-list li:last-child { border-bottom: none; }
+  .feat-num {
+    flex-shrink: 0; width: 24px; height: 24px; border-radius: 50%;
+    background: var(--red); color: #fff;
+    font-family: 'Syne', sans-serif; font-weight: 700; font-size: 0.72rem;
+    text-align: center; line-height: 24px; margin-top: 1px;
+  }
+  .feat-body strong { font-weight: 600; color: var(--navy); font-size: 0.86rem; display: block; margin-bottom: 2px; }
+  .feat-body span { font-size: 0.79rem; color: var(--gray); line-height: 1.5; }
+
+  .side-panels { display: flex; flex-direction: column; gap: 20px; }
+  .glance-box {
+    background: var(--navy); color: #fff;
+    border-radius: 10px; padding: 22px 24px;
+  }
+  .glance-box h4 {
+    font-family: 'Syne', sans-serif; font-weight: 700; font-size: 0.9rem;
+    color: var(--red-light); margin-bottom: 14px;
+  }
+  .glance-box ul { list-style: none; }
+  .glance-box ul li {
+    font-size: 0.79rem; padding: 6px 0; border-bottom: 1px solid rgba(255,255,255,0.08);
+    color: rgba(255,255,255,0.75); line-height: 1.5;
+  }
+  .glance-box ul li:last-child { border-bottom: none; }
+  .glance-box ul li strong { color: #fff; }
+
+  .case-box {
+    background: #FFF5F5; border: 1px solid #FFD0D0;
+    border-left: 4px solid var(--red);
+    border-radius: 10px; padding: 22px 24px;
+  }
+  .case-box h4 {
+    font-family: 'Syne', sans-serif; font-weight: 700; font-size: 0.88rem;
+    color: var(--red); margin-bottom: 10px;
+  }
+  .case-box p { font-size: 0.79rem; color: #555; line-height: 1.65; }
+
+  /* ─── COMPLIANCE ─── */
+  .compliance {
+    background: linear-gradient(135deg, var(--navy) 0%, #1a3a5c 100%);
+    padding: 32px 48px;
+  }
+  .compliance h3 {
+    font-family: 'Syne', sans-serif; font-weight: 800; font-size: 1.05rem;
+    color: #fff; margin-bottom: 8px;
+  }
+  .compliance p { color: rgba(255,255,255,0.65); font-size: 0.82rem; max-width: 700px; line-height: 1.6; }
+  .compliance-tags { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 14px; }
+  .tag {
+    font-size: 0.7rem; font-weight: 600; padding: 5px 12px; border-radius: 100px;
+    background: rgba(255,255,255,0.08); border: 1px solid rgba(255,107,107,0.35);
+    color: var(--red-light); letter-spacing: 0.5px;
+  }
+
+  /* ─── FOOTER ─── */
+  footer {
+    background: var(--off-white);
+    border-top: 3px solid var(--red);
+    padding: 32px 48px;
+  }
+  .footer-grid {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 32px; align-items: start;
+  }
+  .footer-brand p {
+    font-size: 0.8rem; color: var(--gray); margin-top: 10px; line-height: 1.6; max-width: 340px;
+  }
+  .footer-contact h4 {
+    font-family: 'Syne', sans-serif; font-weight: 700; font-size: 0.88rem;
+    color: var(--navy); margin-bottom: 14px;
+  }
+  .contact-row {
+    display: flex; gap: 10px; align-items: flex-start;
+    font-size: 0.8rem; margin-bottom: 8px; color: var(--gray);
+  }
+  .contact-row strong { color: var(--navy); min-width: 64px; font-weight: 600; flex-shrink: 0; }
+  .contact-row a { color: var(--red); text-decoration: none; }
+  .footer-bottom {
+    margin-top: 24px; padding-top: 16px;
+    border-top: 1px solid var(--light-border);
+    text-align: center; font-size: 0.72rem; color: var(--gray); letter-spacing: 0.5px;
+  }
+
+  /* ─── FAQS ─── */
+  .faq-list { display: flex; flex-direction: column; gap: 16px; }
+  .faq-item {
+    background: #fff; border: 1px solid var(--light-border);
+    border-radius: 8px; padding: 20px;
+    cursor: pointer; transition: all 0.3s;
+  }
+  .faq-item:hover { border-color: var(--red-light); }
+  .faq-question { font-family: 'Syne', sans-serif; font-weight: 700; color: var(--navy); display: flex; justify-content: space-between; align-items: center; }
+  .faq-answer { font-size: 0.86rem; color: var(--gray); line-height: 1.6; margin-top: 12px; display: none; }
+  .faq-item.active .faq-answer { display: block; }
+  .faq-icon { font-size: 1.2rem; font-weight: 300; color: var(--red); transition: transform 0.3s; font-family: monospace; }
+  .faq-item.active .faq-icon { transform: rotate(45deg); }
+
+  /* ─── MODAL ─── */
+  .modal-overlay {
+    position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+    background: rgba(10, 22, 40, 0.7); z-index: 1000;
+    display: none; align-items: center; justify-content: center;
+    backdrop-filter: blur(4px);
+  }
+  .modal-overlay.active { display: flex; }
+  .modal-container {
+    background: #fff; width: 100%; max-width: 650px;
+    border-radius: 12px; padding: 32px 40px; position: relative;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+  }
+  .modal-close {
+    position: absolute; top: 24px; right: 24px;
+    font-size: 1.5rem; color: var(--gray); cursor: pointer;
+    background: none; border: none; line-height: 1;
+  }
+  .modal-close:hover { color: var(--text); }
+  .modal-title { font-family: 'Syne', sans-serif; font-size: 1.2rem; font-weight: 800; color: var(--text); margin-bottom: 8px; }
+  .modal-desc { font-size: 0.9rem; color: var(--gray); margin-bottom: 24px; }
+  .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  .form-group { display: flex; flex-direction: column; }
+  .form-group.full { grid-column: 1 / -1; }
+  .form-input {
+    padding: 12px 16px; border: 1px solid var(--light-border);
+    border-radius: 6px; font-family: 'DM Sans', sans-serif;
+    font-size: 0.9rem; color: var(--text); outline: none; transition: border-color 0.3s;
+    background: #fff;
+  }
+  .form-input:focus { border-color: var(--navy); }
+  .form-input::placeholder { color: #99A1B3; }
+  textarea.form-input { resize: vertical; min-height: 80px; }
+  .modal-submit {
+    background: #DE3143; color: #fff; font-weight: 600; font-size: 0.95rem;
+    padding: 14px; border: none; border-radius: 6px; width: 100%; cursor: pointer;
+    margin-top: 16px; transition: background 0.3s; font-family: 'DM Sans', sans-serif;
+  }
+  .modal-submit:hover { background: #CC0000; }
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header>
+  <div class="header-left">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 310 70" width="200" height="46">
+      <defs>
+        <linearGradient id="cg1" x1="0%" y1="0%" x2="100%" y2="100%">
+          <stop offset="0%" style="stop-color:#CC0000;stop-opacity:1"/>
+          <stop offset="100%" style="stop-color:#FF6B6B;stop-opacity:1"/>
+        </linearGradient>
+        <filter id="gl1">
+          <feGaussianBlur stdDeviation="2.5" result="cb"/>
+          <feMerge><feMergeNode in="cb"/><feMergeNode in="SourceGraphic"/></feMerge>
+        </filter>
+      </defs>
+      <rect x="0" y="10" width="52" height="36" rx="7" fill="url(#cg1)" filter="url(#gl1)"/>
+      <rect x="0" y="20" width="52" height="8" fill="rgba(0,0,0,0.22)"/>
+      <rect x="7" y="31" width="10" height="7" rx="2" fill="rgba(255,255,255,0.5)"/>
+      <circle cx="28" cy="35" r="2" fill="rgba(255,255,255,0.7)"/>
+      <circle cx="35" cy="35" r="2" fill="rgba(255,255,255,0.7)"/>
+      <circle cx="42" cy="35" r="2" fill="rgba(255,255,255,0.7)"/>
+      <text x="62" y="26" font-family="'Segoe UI',Arial,sans-serif" font-weight="700" font-size="24" letter-spacing="-0.5" dominant-baseline="auto" fill="#FFFFFF">Smart</text>
+      <text x="136" y="26" font-family="'Segoe UI',Arial,sans-serif" font-weight="500" font-size="24" letter-spacing="-0.5" dominant-baseline="auto" fill="#FF6B6B">Payroll</text>
+      <text x="63" y="46" font-family="'Segoe UI',Arial,sans-serif" font-weight="700" font-size="10" dominant-baseline="auto" fill="#FF4444">PAYROLL SIMPLIFIED</text>
+    </svg>
+    <div class="header-tagline">Powered by CSII INDIA Pvt. Ltd.</div>
+  </div>
+  
+  <div class="nav-links">
+    <a href="#home">Home</a>
+    <a href="#about">About</a>
+    <a href="#features">Features</a>
+    <a href="#faqs">FAQs</a>
+    <a href="https://csii.in/hrms-lite/#/account/login" class="btn-login" target="_blank">Login</a>
+  </div>
+</header>
+
+<!-- HERO -->
+<div class="hero" id="home">
+  <div class="hero-left">
+    <h1>Run compliant payroll in India in <span>just one day</span></h1>
+    <p>Smart Payroll helps founders, HR teams, and consultants move from spreadsheets to accurate, compliant payroll — without long implementations or IT support.</p>
+    <a href="#" class="btn-cta" id="btn-trial">Start Your Free Trial</a>
+    <div class="no-lock">No setup fee. No long-term lock-in.</div>
+  </div>
+  <div class="hero-right">
+    <div class="stat-box">
+      <div class="stat-num">&lt;1 Day</div>
+      <div class="stat-label">Typical go-live after basic setup</div>
+    </div>
+    <div class="stat-box">
+      <div class="stat-num">100%</div>
+      <div class="stat-label">Cloud-based secure access</div>
+    </div>
+    <div class="stat-divider-h"></div>
+    <div class="stat-box">
+      <div class="stat-num">Zero</div>
+      <div class="stat-label">IT support or ERP training needed</div>
+    </div>
+    <div class="stat-box">
+      <div class="stat-num">Multi</div>
+      <div class="stat-label">Location & multi-state support</div>
+    </div>
+  </div>
+</div>
+
+<!-- WHY -->
+<div class="section section-alt" id="about">
+  <div class="section-title">Why Smart Payroll</div>
+  <div class="why-grid">
+    <div class="why-card">
+      <div class="why-badge">A</div>
+      <h3>Made for non-technical teams</h3>
+      <p>Run payroll without IT, complex ERP training, or heavy implementation. If you can use Excel, you can use Smart Payroll.</p>
+    </div>
+    <div class="why-card">
+      <div class="why-badge">B</div>
+      <h3>Built for Indian compliance</h3>
+      <p>Handle PF, ESI, PT, TDS, Bonus, and Gratuity with pre-configured rules and audit-ready summaries.</p>
+    </div>
+    <div class="why-card">
+      <div class="why-badge">C</div>
+      <h3>Ideal for growing businesses</h3>
+      <p>Perfect for startups, SMEs, and consultants managing multiple client payrolls across locations.</p>
+    </div>
+  </div>
+</div>
+
+<!-- WHAT YOU GET -->
+<div class="section" id="features">
+  <div class="section-title">What you get with Smart Payroll</div>
+  <div class="what-grid">
+    <ul class="features-list">
+      <li>
+        <div class="feat-num">1</div>
+        <div class="feat-body">
+          <strong>Instant account setup</strong>
+          <span>Sign up, verify your workspace, and start configuring payroll in minutes — no onboarding queues, no waiting.</span>
+        </div>
+      </li>
+      <li>
+        <div class="feat-num">2</div>
+        <div class="feat-body">
+          <strong>Simple employee upload</strong>
+          <span>Import employees in bulk using ready Excel templates or quick entry forms, with basic validation to reduce master data errors.</span>
+        </div>
+      </li>
+      <li>
+        <div class="feat-num">3</div>
+        <div class="feat-body">
+          <strong>Smart payroll configuration</strong>
+          <span>Configure salary structures, components, attendance rules, and statutory deductions with guided steps and sensible defaults.</span>
+        </div>
+      </li>
+      <li>
+        <div class="feat-num">4</div>
+        <div class="feat-body">
+          <strong>Real-time payroll dashboard</strong>
+          <span>View salary outflow, attendance trends, upcoming payouts, and compliance indicators in one clean, real-time dashboard.</span>
+        </div>
+      </li>
+      <li>
+        <div class="feat-num">5</div>
+        <div class="feat-body">
+          <strong>Ready-made reports</strong>
+          <span>Download payslips, salary registers, statutory summaries, and audit-ready exports in a few clicks.</span>
+        </div>
+      </li>
+      <li>
+        <div class="feat-num">6</div>
+        <div class="feat-body">
+          <strong>Designed for speed</strong>
+          <span>Monthly payroll, revisions, and full-and-final settlements completed much faster than manual or spreadsheet-based processes.</span>
+        </div>
+      </li>
+    </ul>
+
+    <div class="side-panels">
+      <div class="glance-box">
+        <h4>At a glance</h4>
+        <ul>
+          <li><strong>Employees:</strong> Up to a few hundred per company</li>
+          <li><strong>Use cases:</strong> Startups, SMEs, CAs/consultants, firms shifting from Excel/manual payroll</li>
+          <li><strong>Geography:</strong> India, multi-location and multi-state</li>
+          <li><strong>Deployment:</strong> Secure cloud-based access from anywhere</li>
+          <li><strong>Typical go-live:</strong> Under one working day after basic setup</li>
+        </ul>
+      </div>
+      <div class="case-box">
+        <h4>From Excel to effortless payroll</h4>
+        <p>A 40-employee tech startup shifted from Excel-based payroll to Smart Payroll. Processing time dropped from ~6 hours to under 30 minutes, with zero reported errors across multiple cycles. The founder and HR lead now close payroll without external consultants.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- FAQS -->
+<div class="section section-alt" id="faqs">
+  <div class="section-title">Frequently Asked Questions</div>
+  <div class="faq-list">
+    <div class="faq-item" onclick="this.classList.toggle('active')">
+      <div class="faq-question">What is Smart Payroll and who is it for? <span class="faq-icon">+</span></div>
+      <div class="faq-answer">Smart Payroll is a comprehensive, cloud-based payroll solution designed to help Indian startups, SMEs, and consultants automate their payroll processes. It requires zero IT support.</div>
+    </div>
+    <div class="faq-item" onclick="this.classList.toggle('active')">
+      <div class="faq-question">Are there any hidden fees or setup charges? <span class="faq-icon">+</span></div>
+      <div class="faq-answer">No, there are absolutely no setup fees, and we don't believe in long-term lock-ins. You only pay for what you use.</div>
+    </div>
+    <div class="faq-item" onclick="this.classList.toggle('active')">
+      <div class="faq-question">Does it support statutory compliance like PF, ESI, and TDS? <span class="faq-icon">+</span></div>
+      <div class="faq-answer">Yes, we support full Indian statutory compliance including PF, ESI, PT, TDS, Bonus, and Gratuity out of the box.</div>
+    </div>
+    <div class="faq-item" onclick="this.classList.toggle('active')">
+      <div class="faq-question">How secure is my payroll data? <span class="faq-icon">+</span></div>
+      <div class="faq-answer">Your data is hosted on secure cloud infrastructure. Moreover, Smart Payroll is backed by an ISO 27001 & CMMI Level 5 certified organization.</div>
+    </div>
+  </div>
+</div>
+
+<!-- COMPLIANCE -->
+<div class="compliance">
+  <h3>Built and backed by CSII INDIA Pvt. Ltd.</h3>
+  <p>Smart Payroll is powered by CSII INDIA Pvt. Ltd., a CMMI Level 5, ISO 9001:2015, and ISO 27001 certified organization with deep experience in customized ERP and HRMS solutions.</p>
+  <div class="compliance-tags">
+    <span class="tag">CMMI Level 5</span>
+    <span class="tag">ISO 9001:2015</span>
+    <span class="tag">ISO 27001</span>
+    <span class="tag">PF · ESI · PT · TDS</span>
+    <span class="tag">Bonus &amp; Gratuity</span>
+    <span class="tag">Audit-Ready Reports</span>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-grid">
+    <div class="footer-brand">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 310 70" width="190" height="44">
+        <defs>
+          <linearGradient id="cg2" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" style="stop-color:#CC0000;stop-opacity:1"/>
+            <stop offset="100%" style="stop-color:#FF6B6B;stop-opacity:1"/>
+          </linearGradient>
+          <filter id="gl2">
+            <feGaussianBlur stdDeviation="2.5" result="cb2"/>
+            <feMerge><feMergeNode in="cb2"/><feMergeNode in="SourceGraphic"/></feMerge>
+          </filter>
+        </defs>
+        <rect x="0" y="10" width="52" height="36" rx="7" fill="url(#cg2)" filter="url(#gl2)"/>
+        <rect x="0" y="20" width="52" height="8" fill="rgba(0,0,0,0.22)"/>
+        <rect x="7" y="31" width="10" height="7" rx="2" fill="rgba(255,255,255,0.5)"/>
+        <circle cx="28" cy="35" r="2" fill="rgba(204,0,0,0.7)"/>
+        <circle cx="35" cy="35" r="2" fill="rgba(204,0,0,0.7)"/>
+        <circle cx="42" cy="35" r="2" fill="rgba(204,0,0,0.7)"/>
+        <text x="62" y="26" font-family="'Segoe UI',Arial,sans-serif" font-weight="700" font-size="24" letter-spacing="-0.5" dominant-baseline="auto" fill="#0A1628">Smart</text>
+        <text x="136" y="26" font-family="'Segoe UI',Arial,sans-serif" font-weight="500" font-size="24" letter-spacing="-0.5" dominant-baseline="auto" fill="#CC0000">Payroll</text>
+        <text x="63" y="46" font-family="'Segoe UI',Arial,sans-serif" font-weight="700" font-size="10" dominant-baseline="auto" fill="#CC0000">PAYROLL SIMPLIFIED</text>
+      </svg>
+      <p>Helping Indian businesses run accurate, compliant payroll without the complexity — built on two decades of ERP &amp; HRMS expertise.</p>
+    </div>
+    <div class="footer-contact">
+      <h4>Get in Touch</h4>
+      <div class="contact-row"><strong>Website</strong><a href="http://www.csii.in">www.csii.in</a></div>
+      <div class="contact-row"><strong>Email</strong><a href="mailto:dsa@csii.in">dsa@csii.in</a></div>
+      <div class="contact-row"><strong>Phone</strong>+91 98717 21666</div>
+      <div class="contact-row"><strong>Address</strong>C-56, A/2, Phase 2, Industrial Area, Sector 62, Noida, UP – 201309</div>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    TubaSmart Office &nbsp;·&nbsp; Total Universal Business Automation &nbsp;·&nbsp; Powered by CSII INDIA Pvt. Ltd.
+  </div>
+</footer>
+
+</body>
+<!-- MODAL -->
+<div class="modal-overlay" id="callbackModal">
+  <div class="modal-container">
+    <button class="modal-close" id="closeModal">&times;</button>
+    <div class="modal-title">Request a Call Back</div>
+    <div class="modal-desc">Complete the form below and our expert team will contact you within 24 hours.</div>
+    
+    <div class="form-grid">
+      <div class="form-group">
+        <input type="text" class="form-input" placeholder="Full Name *" required>
+      </div>
+      <div class="form-group">
+        <input type="text" class="form-input" placeholder="Phone Number *" required>
+      </div>
+      <div class="form-group">
+        <input type="email" class="form-input" placeholder="Email Address *" required>
+      </div>
+      <div class="form-group">
+        <input type="text" class="form-input" placeholder="Organization / Department *" required>
+      </div>
+      <div class="form-group">
+        <input type="text" class="form-input" placeholder="City *" required>
+      </div>
+      <div class="form-group">
+        <select class="form-input" required>
+          <option value="" disabled selected>Interested Solution *</option>
+          <option value="Smart Payroll">Smart Payroll</option>
+          <option value="HRMS">HRMS</option>
+          <option value="Other">Other Solutions</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <input type="text" placeholder="Preferred Date *" onfocus="(this.type='date')" class="form-input">
+      </div>
+      <div class="form-group">
+        <input type="text" placeholder="Preferred Time *" onfocus="(this.type='time')" class="form-input">
+      </div>
+      <div class="form-group full">
+        <textarea class="form-input" placeholder="Project Details / Requirements *" required></textarea>
+      </div>
+      <div class="form-group full">
+        <button class="modal-submit">Request Call Back</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  // Smooth scrolling for navigation links
+  document.querySelectorAll('.nav-links a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function (e) {
+      e.preventDefault();
+      const targetId = this.getAttribute('href');
+      const target = document.querySelector(targetId);
+      if (target) {
+        window.scrollTo({
+          top: target.offsetTop,
+          behavior: 'smooth'
+        });
+      }
+    });
+  });
+
+  // Modal logic
+  const modal = document.getElementById('callbackModal');
+  const btnTrial = document.getElementById('btn-trial');
+  const closeModal = document.getElementById('closeModal');
+
+  btnTrial.addEventListener('click', (e) => {
+    e.preventDefault();
+    modal.classList.add('active');
+  });
+
+  closeModal.addEventListener('click', () => {
+    modal.classList.remove('active');
+  });
+
+  window.addEventListener('click', (e) => {
+    if (e.target === modal) {
+      modal.classList.remove('active');
+    }
+  });
+</script>
+
+</html>
