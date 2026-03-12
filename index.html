@@ -590,6 +590,15 @@
 
   btnTrial.addEventListener('click', (e) => {
     e.preventDefault();
+    // Clear the form fields each time the modal opens
+    const inputs = modal.querySelectorAll('input, select, textarea');
+    inputs.forEach(input => {
+      if (input.tagName === 'SELECT') {
+        input.selectedIndex = 0;
+      } else {
+        input.value = '';
+      }
+    });
     modal.classList.add('active');
   });
 
